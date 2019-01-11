@@ -61,12 +61,12 @@ def get_version(string):
     
 def get_icon_info(acronym): 
     icon_info = {
-        "KS":["Karen","email1@example.com"],
-        "EM":["Eileen","email2@example.com"],
-        "HF":["Heather","email3@example.com"],
-        "SL":["Sherma","email4@example.com"],
-        "VB":["Valerie","email5@example.com"],
-        "LS":["Lynda","email6@example.com"]
+        "KM":["Kandace","email1@example.com"],
+        "ER":["Ellen","email2@example.com"],
+        "HT":["Harry","email3@example.com"],
+        "SB":["Sally","email4@example.com"],
+        "VK":["Vish","email5@example.com"],
+        "LR":["Larry","email6@example.com"]
     }[acronym]
     return icon_info
 
