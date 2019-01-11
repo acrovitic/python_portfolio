@@ -40,6 +40,7 @@ def get_dates(string):
                 return parse(date).strftime('%m/%d/%Y')
         else:
             return np.nan
+        
 def date_matcher(string):
     string=str(string).replace("\ISM","")
     if 'H5N1' in string:
@@ -51,12 +52,14 @@ def date_matcher(string):
         return ' '.join(string_date_parts)
     else:
         return string.replace("DSMB-","DSMB 0")
+
 def get_access(string):
     string=string.lower()
     if "close" in string or "unblind" in string:
         return "Closed"
     else:
-        return "Open"    
+        return "Open"
+    
 def get_version(file_name):
     match1 = re.search("v(\d{1,2}\.\d{1})",file_name)
     match2 = re.search("(\d{1,2}\.\d{1})",file_name)
@@ -65,13 +68,15 @@ def get_version(file_name):
     elif not match1:
         return match2[1]
     else:
-        return match1[1] 
+        return match1[1]
+    
 def filter_keys(list_of_dictionaries,needed_keys_list):
     dict1 = []
     for d in list_of_dictionaries:
         filtered_d = dict((k, d[k]) for k in needed_keys_list if k in d)
         dict1.append(filtered_d)
     return dict1
+
 def deduplicate_filtered_keys(filtered_list_of_dictionaries):
     dict2 = []
     for d in filtered_list_of_dictionaries:
@@ -86,7 +91,6 @@ class Actions(ActionChains):
         self._actions.append(lambda: time.sleep(time_s))
         return self
 
-# uploading class to further clean data and associate related documents together for later posting
 class document(object):
     protnum_associations={'old assoc':'new assoc'}
     old_path="path/to/files/old"
