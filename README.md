@@ -11,9 +11,15 @@ ________
 
 v1.0 capabilities are as followes:
 
-* Categorize emails (1 of 37 categories)
+* Categorize email (1 of 37 categories)
 
-* Move emails to Outlook and hard drive folders (1 of 150+ folders)
+* Move email to Outlook folder (1 of 150+ folders)
+
+* Move email to hard drive folder (1 of 150+ folders)
+
+* Save email attachment to relevant location (1 of 150+ folders)
+
+* Report on actions as they occur per email
 
 Many tasks in research operations are better managed by artificial intelligence. To determine how many tasks an A.I. could handle, I developed two Deep Neural Networks (DNN) to manage basic functions of a shared clinops inbox. Both DNNs will be continually improved upon, with the ultimate goal being a single robust DNN that can remain operational 24/7, continually monitoring emergent events in a research project, and react accordingly through a diverse array of actions normally taken by humans.
 
