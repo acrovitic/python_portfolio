@@ -1,5 +1,5 @@
 # email templates
-email_subject = "Safety Oversight, Protocol {protocol}, New Protocol({version})"
+email_subject = "New Document, Protocol {protocol}, New Protocol({version})"
 email_template = (r"""
 <body>
 <font face = "Times New Roman" size="11pt">
@@ -17,7 +17,7 @@ John Smith, MS<br>
 Clinical Safety Support<br>
 Example Corporation<br>
 1234 Main Street, Suite 9001<br>
-Bethesda, MD 20817<br>
+Sim City, CA<br>
 Phone: 301-222-3333<br>
 Fax: 301-222-4444<br>
 <a href="mailto:jsmith@example.com">jsmith@example.com</a><br>
