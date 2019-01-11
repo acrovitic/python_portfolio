@@ -6,10 +6,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-f='C:/path/to/sheet_of_document_names.xlsx' # columns: filename, study#, meetingname
+f='path/to/sheet_of_document_names.xlsx' # columns: filename, study#, meetingname
 document_site='https://www.medresearchagency.gov/document_library/'
-file_end_location_main='M:/corporate/shared/drive/path/to/target_folder/'
-hold_folder="M:/corporate/shared/drive/file_holding_folder/"
+file_end_location_main='corporate/shared/drive/path/to/target_folder/'
+hold_folder="corporate/shared/drive/file_holding_folder/"
 
 df=pd.read_excel(f)
 df['download_url']=document_site+df['PROTOCOL']+'/'+df['MEETING']+'/'+df['Name']
@@ -25,7 +25,7 @@ tgt=hold_folder #download all files to one location to move as needed once selen
 profile = {"plugins.plugins_list": [{"enabled":False, "name":"Chrome PDF Viewer"}],
     "download.default_directory" : tgt}
 options.add_experimental_option("prefs",profile)
-chromedriver = 'C:/Python Scripts/chromedriver/chromedriver.exe'
+chromedriver = 'path/to/chromedriver.exe'
 driver = webdriver.Chrome(chromedriver,options=options)
 driver.get('website.com/file.pdf')
 username = driver.find_element_by_id("txtUserName")
