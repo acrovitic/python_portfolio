@@ -76,7 +76,7 @@ for d in final_d:
     ready_to_post.append(vars(pkg))
     
 # upload Protocols to DL and CMS
-chromedriver = 'C:/Python Scripts/chromedriver/chromedriver.exe'
+chromedriver = 'path/to/chromedriver.exe'
 opt = Options() 
 opt.add_argument("--start-maximized") 
 driver=webdriver.Chrome(chromedriver, options=opt) 
