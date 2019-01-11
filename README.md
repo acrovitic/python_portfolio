@@ -79,10 +79,10 @@ v2.0 update:
 [Miscellaneous Scripts.](https://github.com/acrovitic/python_portfolio/tree/master/Miscellaneous "Random Bag'o'Fun") Miscellaneous scripts and programs made to help colleagues quickly complete various smaller tasks.
 
 ### Automated Document Migration 
-## Data cleaning and uploading (Migration Part 2)
+#### Data cleaning and uploading (Migration Part 2)
 [Document Migration Part II: document cleaner/uploader.](https://github.com/acrovitic/python_portfolio/tree/master/system_interfacing/mass_uploading "Document Migration Part II: document cleaner/uploader") Second step in migrating 1000 documents from an old clinical document repository to a new one. Previous anticipated time to completion was 4 weeks. This script completed the task in 2 hours.
 
-## Downloading (Migration Part 1)
+#### Downloading (Migration Part 1)
 [Document Migration Part I: Batch document downloader/handler.](https://github.com/acrovitic/python_portfolio/tree/master/system_interfacing/mass_downloading "Document Migration Part I: Batch document downloader/handler") First step in migrating 1000 documents from an old medical document repository to a new one. Previous anticipated time to completion was 1 week. This script completed the task in roughly 1 minute 30 seconds.
 
 ### OBSOLETE (replaced by DNN) - Outlook Shared Inbox Autofiler
