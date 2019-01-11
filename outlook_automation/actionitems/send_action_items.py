@@ -14,7 +14,7 @@ d = today.strftime('%d%b%y')
 action_items = '''
 Train new hire on internal document manager system.:ES|
 Follow up with IT regarding connectivity issues.:MT|
-Update automated data cleaning script and provide testing results.: VP
+Update automated data cleaning script and provide testing results.: JS
 '''
 
 # Create action item table. Columns are task, asignee, and due date.
@@ -26,7 +26,7 @@ df['Due Date'] = next_week.strftime('%m/%d/%y')
 # Create email, enter email addresses, subject, and formatted email body.
 outlook = win32.Dispatch('outlook.application')
 mail = outlook.CreateItem(0)
-mail.To = 'esmith@example.com; mtrent@example.com; vpoonai@example.com;'
-mail.Subject = 'Weekly Team Meeting Action Items - {d}'.format(d=d)
+mail.To = 'esmith@example.com; mtrent@example.com; jsmith@example.com;'
+mail.Subject = 'Team Meeting Action Items - {d}'.format(d=d)
 mail.HtmlBody = actions_items_email_template.format(d=d,df=df.to_html(index=False))
 mail.Display(False)
