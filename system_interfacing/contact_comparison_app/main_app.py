@@ -14,7 +14,7 @@ from difflib import SequenceMatcher as SM
 import glob
 import win32com.client as win32
 
-Ui_MainWindow, QtBaseClass = uic.loadUiType('dialog.ui')
+Ui_MainWindow, QtBaseClass = uic.loadUiType('app_interface.ui')
 
 class PandasModel(QtCore.QAbstractTableModel): 
 	def __init__(self, df = pd.DataFrame(), parent=None): 
