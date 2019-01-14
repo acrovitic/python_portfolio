@@ -22,7 +22,7 @@ v1.0 capabilities are as followes:
 * Save email attachment to relevant location (1 of 150+ folders)
 * Report on actions as they occur per email
 
-Many tasks in research operations are better managed by artificial intelligence. To determine how many tasks an A.I. could handle, I developed two Deep Neural Networks (DNN) to manage basic functions of a shared clinops inbox. Both DNNs will be continually improved upon, with the ultimate goal being a single robust DNN that can remain operational 24/7, continually monitoring emergent events in a research project, and react accordingly through a diverse array of actions normally taken by humans.
+Many tasks in research operations are better managed by artificial intelligence. To determine how many tasks an A.I. could handle, I developed two Deep Neural Networks (DNN) to manage specific management tasks of a shared clinops inbox. Both DNNs will be continually improved upon, with the ultimate goal being a single robust DNN that can remain operational 24/7, continually monitor emergent events in a research project, and react accordingly through a suite of programs and scripts that complete tasks normally completed by humans.
 
 ### Recursive Functions for Outlook Folder Looping (v1.0 12/27/18)
 [Depth Detector and Pathfinder](https://github.com/acrovitic/python_portfolio/tree/master/outlook_automation/folder_recursion "Loop through Outlook folders and all subfolders with the Outlook Depth Detector and Outlook Pathfinder functions")
