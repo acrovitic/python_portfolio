@@ -6,6 +6,11 @@ I am interested in leveraging artificial intelligence combined with programmatic
 ________
 
 # Content
+### Contact Info Comparison App (v1.0 1/10/19)
+[Contact Info Comparison App](https://github.com/acrovitic/python_portfolio/tree/master/system_interfacing/contact_comparison_app "Contact Info Comparison App")
+
+GUI-based application that identifies inconsistencies in research project team contact information between a document in a shared drive and data in a content management website.
+
 ### Deep Neural Network for Research Operations (v1.0 12/27/18)
 [Deep Neural Network](https://github.com/acrovitic/python_portfolio/tree/master/deep_neural_network "Deep Neural Network")
 
