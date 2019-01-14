@@ -1,7 +1,7 @@
 # Welcome to my Project Portfolio
-This repository contains example implementations of programmatic solutions I have developed and deployed in my professional career for stakeholders in the medical/clinical industry. My portfolio includes a mix of traditional automation methods and neural network powered "digital worker" automation, as organizations can save time and resources through programmatic automation.
+This repository contains example implementations of programmatic solutions I have developed and deployed in my professional career for stakeholders in the medical/clinical industry. My portfolio includes a mix of traditional automation methods and neural network powered "digital worker" automation. While I am happy to program anything required of me, I have so far focused on automated solutions because they save organizations time and resources.
 
-I am interested in leveraging artificial intelligence combined with programmatic automation in a variety of ways ranging from practical business applications to unique scientific projects. For example, shortening turnaround time and improving quality of administrative tasks typically done by humans. Below is a list of projects (in no particular order) that I have built and deployed to solve challenges for colleagues met in the course of my career.
+I am interested in leveraging artificial intelligence combined with programmatic automation in a variety of ways ranging from practical business applications to unique scientific projects. For example, my latest natural language processing project shortened turnaround time and improved quality of email-related administrative tasks typically done by humans. Below is a list of projects that I have built and deployed to solve challenges for colleagues met in the course of my career.
 
 ________
 
