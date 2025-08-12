@@ -4,7 +4,7 @@
 ### Actual task completion time with script: 3 hours 15 minutes
 
 ### Narrative
-After downloading 1000 documents from the to-be-retired document repository, I was tasked with upload all downloaded documents to the new
+After downloading 1000 documents from the to-be-retired document repository, I was tasked with uploading all downloaded documents to the new
 repository. Uploading included entering metadata into form fields in the new website, associating documents with meetings they 
 were used in, and filling in gaps in metadata due to differences in repository formatting (e.g. meeting dates were coded in very 
 different formats. My supervisor believed that this could only be addressed comparing by hand each documents meeting data to the new 
