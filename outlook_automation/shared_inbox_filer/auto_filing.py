@@ -1,25 +1,28 @@
 import win32com
 from win32com import client
 import datetime as dt
-import sys, os, re
-import pandas as pd
-import time
-from dateutil.parser import parse
-from collections import Counter
+import os, re
 
 # make one dictionary for drive filing path and one dictionary for outlook filing path.
 m_dict = dict() # path for email on m drive
 m_attachment = dict() # path for attachments on m drive
 outlook_dict = dict() # path for outlook folder
 date = dt.datetime.now().strftime("%m/%d/%Y") # today
-for email in list(main_folder.Folders["Inbox"].Items.restrict("[SentOn] < '{} 07:00 AM' And [Categories] = 'File'".format(date))):
+
+# outlook init
+outlook = win32com.client.Dispatch("Outlook.Application")
+mapi_namespace = outlook.GetNamespace("MAPI")
+main_folder = mapi_namespace.GetDefaultFolder(6)
+inbox_items = main_folder.Folders["Inbox"].Items
+
+for email in list(inbox_items.restrict("[SentOn] < '{} 07:00 AM' And [Categories] = 'File'".format(date))):
     match = re.search("(\d{2})\-\d{4}",email.Subject)
     if match:
         try:
             prot_num = match.group(0) # one_tuple previously used to get protocol number
             year_part = match.group(1)
-            file_path = "path/to/protocol_folders/20" + year_part + "/" + prot_num + "/Emails/"
-            attachment_path = "path/to/protocol_folders/20" + year_part + "/" + prot_num + "/Emails/Attachments/"
+            file_path = f"path/to/protocol_folders/20{year_part}/{prot_num}/Emails/"
+            attachment_path = f"path/to/protocol_folders/20{year_part}/{prot_num}/Emails/Attachments/"
             strname = str(email.Subject).replace(":","-")
             outlook_path = main_folder.Folders["Inbox"].Folders[prot_num].Folders["Completed"]
             m_dict[str(email.Subject)] = file_path+strname+".msg"

@@ -15,6 +15,7 @@ class protocol_doc(object):
         self.new_file_name = fpart+'_'+self.version+"_"+self.date
         self.new_file_path = self.path.replace(fpart,self.new_file_name)
 
+
 class doc_package(object):
     def __init__(self,dictionary):
         for k,v in dictionary.items():

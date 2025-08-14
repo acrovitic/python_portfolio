@@ -1,9 +1,7 @@
-import calendar
 import pandas as pd
 import datetime as dt
-import email_templates
+from email_templates import action_items_email_template
 import win32com.client as win32
-from datetime import date, timedelta
 
 # Set date variables for action item table, email body, and subject line
 today = dt.date.today()
@@ -27,6 +25,6 @@ df['Due Date'] = next_week.strftime('%m/%d/%y')
 outlook = win32.Dispatch('outlook.application')
 mail = outlook.CreateItem(0)
 mail.To = 'esmith@example.com; mtrent@example.com; jsmith@example.com;'
-mail.Subject = 'Team Meeting Action Items - {d}'.format(d=d)
-mail.HtmlBody = actions_items_email_template.format(d=d,df=df.to_html(index=False))
+mail.Subject = f'Team Meeting Action Items - {d}'
+mail.HtmlBody = action_items_email_template.format(d=d, df=df.to_html(index=False))
 mail.Display(False)

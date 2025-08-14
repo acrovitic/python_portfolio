@@ -1,5 +1,3 @@
-# functions
-
 def remove_dupes(l, k):
     seen = {} 
     for d in l:
@@ -7,6 +5,7 @@ def remove_dupes(l, k):
         if v not in seen:
             seen[v] = d
     return seen
+
 
 def group_by(dictionary_list,getter,finder): # 'protocol', 'path' for example
     key = operator.itemgetter(getter)
@@ -17,12 +16,15 @@ def group_by(dictionary_list,getter,finder): # 'protocol', 'path' for example
             if d1[getter] == d2[getter]:
                 d1[finder+"_"] = d2[finder] 
 
+
 def filter_keys(list_of_dictionaries,needed_keys_list):
     dict1 = []
     for d in list_of_dictionaries:
         filtered_d = dict((k, d[k]) for k in needed_keys_list if k in d)
         dict1.append(filtered_d)
     return dict1
+
+
 def deduplicate_filtered_keys(filtered_list_of_dictionaries):
     dict2 = []
     for d in filtered_list_of_dictionaries:
@@ -30,15 +32,18 @@ def deduplicate_filtered_keys(filtered_list_of_dictionaries):
             dict2.append(d)
     return dict2
 
+
 def get_title(the_iterable, condition = lambda x: True):
     for n,i in enumerate(the_iterable):
         if condition(i):
             return the_iterable[n+1]
 
+
 def find_item(the_iterable, condition = lambda x: True):
     for n,i in enumerate(the_iterable):
         if condition(i):
             return i
+
 
 def get_dates(string):
     string=str(string)
@@ -52,13 +57,15 @@ def get_dates(string):
         except:
             pass
 
+
 def get_version(string):
     match = re.search('(\d{1,2}\.\d{1})',string)
     if match:
         return "v"+match[0]
     else:
         return "version"
-    
+
+
 def get_icon_info(acronym): 
     icon_info = {
         "KM":["Kandace","email1@example.com"],
@@ -69,6 +76,7 @@ def get_icon_info(acronym):
         "LR":["Larry","email6@example.com"]
     }[acronym]
     return icon_info
+
 
 # get assigned icon personnel
 def get_icon_personnel(prot_string):
@@ -83,6 +91,7 @@ def get_icon_personnel(prot_string):
         for d in mail_dict:
             if d['Protocol #'] == prot_string:
                 return get_icon_info(d['TEAM'])
+
 
 def download_protocol(file_url):
     site2 = "www.website1.com/signin/auth"

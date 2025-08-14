@@ -1,6 +1,8 @@
  
-  # working outlook folder probe. finds path of deepest folder(s)
-def outlook_depth_pathfinder(target_folder_l,n):#always make n=1. represents start layer. increments deeper func goes
+
+def outlook_depth_pathfinder(target_folder_l,n):
+    # working outlook folder probe. finds path of deepest folder(s)
+    # #always make n=1. represents start layer. increments deeper func goes
     last_count=0
     target_l=[]
     for target_folder in target_folder_l:
@@ -20,8 +22,9 @@ def outlook_depth_pathfinder(target_folder_l,n):#always make n=1. represents sta
     next_layer=outlook_depth_pathfinder(target_l,n) 
     return next_layer
 
-# depth of deepest subdirectory of given folder. always make n=1. represents start layer. increments deeper func goes
+
 def outlook_depth_detector(target_folder_l,n):
+    # depth of deepest subdirectory of given folder. always make n=1. represents start layer. increments deeper func goes
     last_count=0
     target_l=[]
     for target_folder in target_folder_l:

@@ -17,6 +17,7 @@ def get_doc_attributes(string):
     else:
         return "Unknown"
 
+
 def get_mtg_path(attr_list):
     if attr_list:
         meeting_folders=os.listdir(attr_list[0])
@@ -29,6 +30,7 @@ def get_mtg_path(attr_list):
     else:
         return "Error: Attribute is 'None' type."
 
+
 def get_doc_type(file_path):
     type_dict={'Recommendations':['Recom'],#add more later
            'Meeting Minutes - Open':['Minute','Open'],
@@ -38,7 +40,8 @@ def get_doc_type(file_path):
     for k,v in type_dict.items():
         if all(i in file_name for i in v):
             return k
-        
+
+
 def old_dl_mtg_format(string):
     if 'Charter' not in string:
         meeting=string.rsplit('/',2)[1]
@@ -51,7 +54,8 @@ def old_dl_mtg_format(string):
                 return k+' - '+date
     else:
         return "1 - Study Documents"
-    
+
+
 def detect_date(file_path):
     mtg_part=file_path.rsplit("/",2)[1]
     for item in mtg_part.split():
@@ -60,14 +64,16 @@ def detect_date(file_path):
             return parsed_item.strftime('%m/%d/%Y')
         except ValueError:
             continue
-            
+
+
 def get_access(string):
     string=string.lower()
     if "close" in string or "unblind" in string:
         return "Closed"
     else:
         return "Open"
-    
+
+
 def get_version(file_name):
     match1 = re.search("v(\d{1,2}\.\d{1})",file_name)
     match2 = re.search("(\d{1,2}\.\d{1})",file_name)
