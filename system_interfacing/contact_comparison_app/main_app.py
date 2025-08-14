@@ -1,18 +1,16 @@
-import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5 import uic, QtCore, QtGui
-import pandas as pd
-import datetime as dt
-import os
-from bs4 import BeautifulSoup
-import re
-import xlrd
-import requests
-from docx import *
-import time
 from difflib import SequenceMatcher as SM
+from PyQt5 import uic, QtCore, QtGui
+from bs4 import BeautifulSoup
+from configuration.config_reader import ConfigReader
+import pandas as pd
+from docx import *
+import requests
+import xlrd
 import glob
-import win32com.client as win32
+import sys
+import os
+import re
 
 Ui_MainWindow, QtBaseClass = uic.loadUiType('app_interface.ui')
 
@@ -21,7 +19,7 @@ class PandasModel(QtCore.QAbstractTableModel):
 		QtCore.QAbstractTableModel.__init__(self, parent=parent)
 		self._df = df
 
-	def headerData(self, section, orientation, role=QtCore.Qt.DisplayRole):
+	def header_data(self, section, orientation, role=QtCore.Qt.DisplayRole):
 		if role != QtCore.Qt.DisplayRole:
 			return QtCore.QVariant()
 
@@ -46,7 +44,7 @@ class PandasModel(QtCore.QAbstractTableModel):
 
 		return QtCore.QVariant(str(self._df.ix[index.row(), index.column()]))
 
-	def setData(self, index, value, role):
+	def set_data(self, index, value, role):
 		row = self._df.index[index.row()]
 		col = self._df.columns[index.column()]
 		if hasattr(value, 'toPyObject'):
@@ -60,10 +58,10 @@ class PandasModel(QtCore.QAbstractTableModel):
 		self._df.set_value(row, col, value)
 		return True
 
-	def rowCount(self, parent=QtCore.QModelIndex()): 
+	def row_count(self, parent=QtCore.QModelIndex()):
 		return len(self._df.index)
 
-	def columnCount(self, parent=QtCore.QModelIndex()):
+	def column_count(self, parent=QtCore.QModelIndex()):
 		return(len(self._df.columns))
 
 class MyApp(QMainWindow):
@@ -98,10 +96,10 @@ class MyApp(QMainWindow):
 
 	def get_harddrive_cl_text(self):
 		yr_part=re.search("(\d{2})\-\d{3,4}",self.protocol)[1]
-		self.mpath = MyApp.path_pattern.format(y=yr_part,p=self.protocol)
+		self.mpath = MyApp.path_pattern.format(y=yr_part, p=self.protocol)
 		exclude = ['email','e-mail']
 		list_of_cls = []
-		for file in glob.glob(self.mpath+self.protocol+"*List*"):
+		for file in glob.glob(f"{self.mpath}{self.protocol}*List*"):
 			if not any(i in file.lower() for i in exclude):
 				list_of_cls.append(file)
 		latest_cl = max(list_of_cls, key=os.path.getctime)
@@ -114,23 +112,24 @@ class MyApp(QMainWindow):
 		names = [i for i in names if len(i) > 2 and ":" not in i]
 		self.cl_text = list(set(names))
 
+
 	def get_online_contacts(self):
-		cms = "www.target-page.com/login.aspx"
-		ua = {'User-Agent':'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.110 Safari/537.36',
-		'X-Requested-With': 'XMLHttpRequest',
-		'Accept': 'application/json, text/javascript, */*; q=0.01',
-		'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-		'X-Requested-With': 'XMLHttpRequest'}
-		data = {'txtUserName':self.username,'txtPassword':self.password}
-		# target urls
-		url1 = "www.target-page.com/page_1"
-		url2 = "www.target-page.com/page_2"
-		search_url = "www.target-page.com/page_3"
-		cl_url = "www.target-page.com/page_3/_DownloadContacts?Id={p}&name={f}"
+		config = ConfigReader()
+
+		ua = {'User-Agent': config.user_agent,
+		'X-Requested-With': config.x_req,
+		'Accept': config.accept,
+		'Content-Type': config.content_type,
+		'X-Requested-With': config.x_req}
+		data = {
+			'txtUserName': self.username,
+			'txtPassword': self.password
+		}
+
 		# sign into cms
 		s = requests.Session()
 		s.headers['User-Agent'] = ua['User-Agent']
-		r1 = s.get(cms)
+		r1 = s.get(config.cms)
 		soup = BeautifulSoup(r1.text,'html.parser')
 		for elem in soup.form.findAll('input'):
 			try:
@@ -143,18 +142,18 @@ class MyApp(QMainWindow):
 		data["btnSignIn.x"] = 52
 		data["btnSignIn.y"] = 13
 		data['RememberMe'] = 'on'
-		r2 = s.post(cms,data=data)
-		r2 = s.get(url1)
+		r2 = s.post(config.cms,data=data)
+		r2 = s.get(config.url1)
 		prot_soup = BeautifulSoup(r2.text,'html.parser')
 		for option in prot_soup.find_all('option'):
 			if option.text == self.protocol:
 				self.protid = option['value']
-		r3 = s.get(url2)
+		r3 = s.get(config.url2)
 		data = {'protocol':self.protid}
-		r3 = s.post(search_url,data=data,headers=ua)
+		r3 = s.post(config.search_url,data=data,headers=ua)
 		response_soup = BeautifulSoup(r3.text, 'html.parser')
 		filename = response_soup.find(id="CommitteeName")['value']
-		r4 = s.get(cl_url.format(p=self.protid,f=filename)) 
+		r4 = s.get(config.cl_url.format(search_url=config.search_url, p=self.protid, f=filename))
 		if r4.status_code == 200:
 			df_cms = pd.read_excel(xlrd.open_workbook(file_contents=r4.content), engine='xlrd')
 			name_columns = df_cms['Name'].tolist()

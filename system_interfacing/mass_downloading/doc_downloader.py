@@ -6,23 +6,28 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-f='path/to/sheet_of_document_names.xlsx' # columns: filename, study#, meetingname
-document_site='https://www.medresearchagency.gov/document_library/'
-file_end_location_main='corporate/shared/drive/path/to/target_folder/'
-hold_folder="corporate/shared/drive/file_holding_folder/"
+f = 'path/to/sheet_of_document_names.xlsx' # columns: filename, study#, meetingname
+document_site = 'https://www.medresearchagency.gov/document_library/'
+file_end_location_main = 'corporate/shared/drive/path/to/target_folder/'
+hold_folder = "corporate/shared/drive/file_holding_folder/"
 
 df=pd.read_excel(f)
-df['download_url']=document_site+df['PROTOCOL']+'/'+df['MEETING']+'/'+df['Name']
-df['subfolder']=df['PROTOCOL']+'/'+df['MEETING']
-df['old_file_path']=hold_folder+df['Name']
-df['new_file_path']=file_end_location_main+df2['subfolder']+'/'+df2['Name']
-downloaded_files=df.to_dict('records') # dictionary data structures allow for fast iteration
-f_list=df['download_url'].tolist()
+df['download_url'] = f"{document_site}{df['PROTOCOL']}/{df['MEETING']}/{df['Name']}"
+df['subfolder'] = f"{df['PROTOCOL']}/{df['MEETING']}"
+df['old_file_path'] = hold_folder+df['Name']
+df['new_file_path'] = f"{file_end_location_main}{df['subfolder']}/{df['Name']}"
+downloaded_files = df.to_dict('records') # dictionary data structures allow for fast iteration
+f_list = df['download_url'].tolist()
 
 #initiate file download with selenium
 options = webdriver.ChromeOptions()
-tgt=hold_folder #download all files to one location to move as needed once selenium completes its task
-profile = {"plugins.plugins_list": [{"enabled":False, "name":"Chrome PDF Viewer"}],
+tgt = hold_folder #download all files to one location to move as needed once selenium completes its task
+profile = {"plugins.plugins_list": [
+    {
+        "enabled":False,
+        "name":"Chrome PDF Viewer"
+    }
+],
     "download.default_directory" : tgt}
 options.add_experimental_option("prefs",profile)
 chromedriver = 'path/to/chromedriver.exe'
